@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Kategoria</title>
+</head>
+<body>
+    <br/>
+    <hr>
+    <br/>
+        <div class="form-row">
+            <div>
+                <form method="post" th:action="@{'/przepis/'+ ${id} +'/opinia/edytuj/' + ${likeid}}" th:object="${like}">
+                        <div class="form-group">
+                            <input th:field="*{id}" hidden >
+                            <label for="user">Nazwa kategorii</label>
+                            <input th:field="*{user}" type=text placeholder="nazwa kategorii .." id="user">
+                            <input th:field="*{description}" type=text placeholder="nazwa kategorii .." id="description">
+                            <input th:field="*{formula}" type="hidden">
+                        </div>
+                    <input type="submit" value="Zapisz">
+                </form>
+            </div>
+
+            <div class="form-row">
+                <form method="post" th:action="@{'/przepis/' + ${id} + '/opinia/usun/' + ${likeid}}" th:object="${like}">
+                        <div class="form-group">
+                            <input th:field="*{id}" type="hidden">
+                            <input th:field="*{user}" type="hidden" id="duser">
+                            <input th:field="*{description}" type="hidden" id="ddescription">
+                            <input th:field="*{formula}" type="hidden">
+                        </div>
+                    <input type="submit" value="Usuń kategorię">
+                </form>
+            </div>
+        </div>
+        <br/>
+        <hr>
+        <br/>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Dopisanie nowego przepisu</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<form method="post" th:action="@{'/przepis/nowy'}" th:object="${formula}">
+    <fieldset>
+        <label for="formulaname">Nazwa przepisu</label>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Nazwa przepisu</span>
+            </div>
+            <input th:field="*{name}" type="text" class="form-control" id="formulaname" aria-describedby="basic-addon3">
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input th:field="*{image}" type="file" accept=".png, .jpg, .jpeg" class="custom-file-input" id="formulaimage">
+                <label class="custom-file-label" for="formulaimage" aria-describedby="inputGroupFileAddon02">Wybierz plik</label>
+            </div>
+            <div class="input-group-append">
+                <span class="input-group-text" id="inputGroupFileAddon02">Pobierz</span>
+            </div>
+        </div>
+
+        <label for="method">Przepis wykonawia</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Przepis wykonawia</span>
+            </div>
+            <textarea th:field="*{method}" class="form-control" aria-label="With textarea" name="method" id="method"></textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="categories">Kategorie</label>
+            </div>
+            <select  name="categories" id="categories" multiple>
+                <div th:each="category: ${categories}">
+                    <option th:value="${category.id}" th:text="${category.name}">Kategorie</option>
+                </div>
+
+            </select>
+        </div>
+    </fieldset>
+    <fieldset>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="ingredients">Składniki</label>
+            </div>
+        <select  name="ingredients" id="ingredients" multiple>
+            <div th:each="ingredient: ${ingredients}">
+                <option th:value="${ingredient.id}" th:text="${ingredient.name}">Składniki</option>
+            </div>
+        </select>
+        </div>
+    </fieldset>
+    <input type="submit" value="Zapisz">
+</form>
+</body>
+</html>

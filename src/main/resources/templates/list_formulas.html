@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Strona główna</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Lista przepisów</h1>
+
+<div th:each="formula: ${formulas}">
+    <div>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"  th:data-target="${'#collapse'+ formula.id}" aria-expanded="false"  th:aria-controls="${'collapse'+formula.id}">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3"><img th:src="${formula.image}"></span>
+                                </div>
+                                <p th:text="${formula.id}+ '.' + '  '+${formula.name}" type="text" class="form-control" id="name" aria-describedby="basic-addon3"></p>
+                            </div>
+
+                            <img th:src="${formula.image}">
+                            <h4 th:text="${formula.id}+ '.' + '  '+${formula.name}"></h4>
+                        </button>
+                        <h4 th:text="${'Liczba opinii: '+#lists.size(formula.likes)} "></h4>
+                    </h2>
+                </div>
+
+                <div th:id="${'collapse'+formula.id}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body" >
+                        <span th:text="${formula.method}">Opis</span>
+                        <span>  <a th:href="@{'/przepis/' + ${formula.id}}" >Szczegóły</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+
+    </div>
+
+</div>
+<a href="/przepis/nowy/" >Dodaj przepis >>></a>
+<a href="/skladnik/" >Lista składniów >>></a>
+<a href="/kategoria/" >Lista kategorii >>></a>
+</body>
+</html>

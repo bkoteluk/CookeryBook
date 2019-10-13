@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Przepis kulinarny</title>
+</head>
+<body>
+<h1>Szczegóły przepisu kulinarnego</h1>
+<div class="d-flex p-2 bd-highlight">
+<!--    <img class="img-mini" th:src="${animal.img}" />-->
+    <div> <img th:src="${formula.image}"></div>
+    <div th:text="${formula.id}"></div>
+    <div th:text="${formula.name}"></div>
+</div>
+<div class="d-inline-flex p-2 bd-highlight">
+    <div th:text="${formula.method}"></div>
+</div>
+<div th:each="category: ${categories}">
+    <span th:text = "${ ' >>' + category.name + '<< '}"></span>
+</div>
+
+<div class="d-flex flex-row bd-highlight mb-5">
+    <div class="p-2 bd-highlight">
+        <table>
+            <tr>
+                <th>Nazwa składnika</th>
+            </tr>
+            <tr th:each="ingredient: ${ingredients}">
+                <td th:text="${ingredient.name}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="p-2 bd-highlight">
+        <div>
+            <form method="post" th:action="@{'/przepis/' + ${id} + '/opinia/zapisz'}" th:object="${newlike}">
+                <fieldset>
+                    <legend>Dodawanie nowej opinii</legend>
+                    <div class="form-group">
+                        <label for="user">nazwa użytkownika</label>
+                        <input th:field = "*{id}" hidden>
+                        <input th:field = "*{user}" type = "text" placeholder="nazwa użytkownika" id="user">
+                        <input th:field = "*{description}" type ="text" placeholder="tekst opinii" id="description">
+                        <input th:field = "*{formula}" hidden >
+                    </div>
+                </fieldset>
+                <input type="submit" value = "Zapisz">
+            </form>
+        </div>
+
+        <hr>
+        <table>
+            <tr>
+                <th colspan="3"><h4>Opinie :</h4></th>
+            </tr>
+            <tr>
+                <th>Numer</th>
+                <th>Użytkownik</th>
+                <th>Opinia</th>
+            </tr>
+            <tr th:each="like: ${likes}">
+                <td ><a th:href="@{'/przepis/' + ${id} + '/opinia/edytuj/' + ${like.id}}" th:text="${like.id}"></a></td>
+                <td th:text="${like.user}"></td>
+                <td th:text="${like.description}"></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
