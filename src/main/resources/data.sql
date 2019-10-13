@@ -1,7 +1,7 @@
 INSERT INTO formulas(id, image,  name, method) VALUES(1, 'https://www.bbcgoodfood.com/sites/default/files/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--890477_11.jpg', 'Gotowana parówka z musztardą', 'Ugotować parówkę, podawać z bułką i musztardą');
-INSERT INTO formulas(id, name, method) VALUES (2, 'Green bean parsley pesto gnocchi', 'Bring a large pan of lightly salted water to the boil. Add the gnocchi and beans, and boil for 2-3 mins or until the gnocchi floats to the top of the pan.
+INSERT INTO formulas(id, image, name, method) VALUES (2, 'https://www.bbcgoodfood.com/sites/default/files/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--1079534_10.jpg','Green bean parsley pesto gnocchi', 'Bring a large pan of lightly salted water to the boil. Add the gnocchi and beans, and boil for 2-3 mins or until the gnocchi floats to the top of the pan.
 Drain and toss the gnocchi and beans with the pesto, then divide between four bowls. Finish with a little extra shaved parmesan, if you like. ');
-INSERT INTO formulas(id, name, method) VALUES  (3, 'Chicken noodle soup', 'Pour 900ml chicken or vegetable stock into a pan and add 1 boneless, skinless chicken breast, 1 tsp chopped root ginger and 1 finely chopped garlic clove.
+INSERT INTO formulas(id, image, name, method) VALUES  (3, 'https://www.bbcgoodfood.com/sites/default/files/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--424775_12.jpg' ,'Chicken noodle soup', 'Pour 900ml chicken or vegetable stock into a pan and add 1 boneless, skinless chicken breast, 1 tsp chopped root ginger and 1 finely chopped garlic clove.
 Bring to the boil, then reduce the heat, partly cover and simmer for 20 mins, until the chicken is tender. Remove the chicken to a board and shred into bite-size pieces using a couple of forks.
 Return the chicken to the stock with 50g rice or wheat noodles, 2 tbsp sweetcorn, 2-3  thinly sliced mushrooms, 1 shredded spring onion and 2 tsp soy sauce. Simmer for 3-4 mins until the noodles are tender.
 Ladle into two bowls and scatter over the remaining shredded spring onion, mint or basil leaves and shredded chili if using. Serve with extra soy sauce for sprinkling.');
@@ -35,11 +35,11 @@ INSERT INTO INGREDIENTS_FORMULAS(INGREDIENTS_ID, FORMULAS_ID) VALUES(7,3);
 INSERT INTO INGREDIENTS_FORMULAS(INGREDIENTS_ID, FORMULAS_ID) VALUES(8,3);
 INSERT INTO INGREDIENTS_FORMULAS(INGREDIENTS_ID, FORMULAS_ID) VALUES(9,3);
 
-INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(1, 'meatfood.png', 'Potrawa mięsna');
-INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(2, 'fastfood.png', 'Fast Food');
-INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(3, 'meatfood.png', 'Zupy');
-INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(4, 'meatfood.png', 'Danie regionalne');
-INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(5, 'fastfood.png', 'Kuchnia włoska');
+INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(1, '/meatfood.png', 'Potrawa mięsna');
+INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(2, '/fastfood.png', 'Fast Food');
+INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(3, '/meatfood.png', 'Zupy');
+INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(4, '/meatfood.png', 'Danie regionalne');
+INSERT INTO FORMULACATEGORIES(ID,ICON, NAME) VALUES(5, '/fastfood.png', 'Kuchnia włoska');
 
 
 INSERT INTO FORMULACATEGORIES_FORMULAS(FORMULA_CATEGORIES_ID, FORMULAS_ID) VALUES (1,1);
