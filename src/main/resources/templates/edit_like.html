@@ -8,9 +8,13 @@
     <title>Kategoria</title>
 </head>
 <body>
-    <br/>
-    <hr>
-    <br/>
+<div class = "row">
+    <div th:replace="fragments::MainPage"></div>
+    <div th:replace="fragments::IngredientsList"></div>
+    <div th:replace="fragments::CategoriesList"></div>
+</div>
+<hr>
+<br/>
         <div class="form-row">
             <div>
                 <form method="post" th:action="@{'/przepis/'+ ${id} +'/opinia/edytuj/' + ${likeid}}" th:object="${like}">

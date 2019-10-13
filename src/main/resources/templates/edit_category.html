@@ -8,9 +8,13 @@
     <title>Kategoria</title>
 </head>
 <body>
-    <br/>
-    <hr>
-    <br/>
+<div class = "row">
+    <div th:replace="fragments::MainPage"></div>
+    <div th:replace="fragments::CategoriesList"></div>
+    <div th:replace="fragments::NewCategory"></div>
+</div>
+<hr>
+<br/>
         <div class="form-row">
             <div>
                 <form method="post" th:action="@{'/kategoria/'+ ${id} +'/edytuj'}" th:object="${category}">
@@ -18,6 +22,8 @@
                             <input th:field="*{id}" readonly maxlength="4">
                             <label for="name">Nazwa kategorii</label>
                             <input th:field="*{name}" type=text placeholder="nazwa kategorii .." id="name">
+                            <label for="icone">Ikona</label>
+                            <input th:field="*{icon}" type=text placeholder="plik z ikoną" id="icone">
                             <input th:field="*{formulas}" type="hidden">
                         </div>
                     <input type="submit" value="Zapisz">
@@ -28,7 +34,8 @@
                 <form method="post" th:action="@{'/kategoria/'+ ${id} +'/usun'}" th:object="${category}">
                         <div class="form-group">
                             <input th:field="*{id}" type="hidden">
-                            <input th:field="*{name}" type="hidden" id="nameIng">
+                            <input th:field="*{icon}" type="hidden">
+                            <input th:field="*{name}" type="hidden">
                             <input th:field="*{formulas}" type="hidden">
                         </div>
                     <input type="submit" value="Usuń kategorię">

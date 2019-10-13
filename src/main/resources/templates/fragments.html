@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+
+<div th:fragment = "MainPage">
+    <a class="btn btn-outline-secondary" href="/" role="button">Strona główna
+    </a>
+</div>
+
+<div th:fragment = "NewFormula">
+    <a class="btn btn-outline-secondary" href="/przepis/nowy/" role="button">Nowy przepis
+    </a>
+</div>
+<div th:fragment = "EditDeleteFormula">
+    <a class="btn btn-outline-secondary" th:href="@{'/przepis/' + ${id} + '/edytuj/'}" role="button">Edytuj/usuń przepis
+    </a>
+</div>
+
+<div th:fragment = "FormulasCategoryOrder">
+    <a class="btn btn-outline-secondary" href="/przepis/lista1/" role="button">Przepisy wg kategorii
+    </a>
+</div>
+<div th:fragment = "FormulasLikeOrder">
+    <a class="btn btn-outline-secondary" href="/przepis/stat/" role="button">Przepisy wg ilości opinii
+    </a>
+</div>
+<div th:fragment = "CategoriesList">
+    <a class="btn btn-outline-secondary" href="/kategoria" role="button">Lista kategorii
+    </a>
+</div>
+<div th:fragment = "NewCategory">
+    <a class="btn btn-outline-secondary" href="/kategoria/nowa" role="button">Nowa kategoria
+    </a>
+</div>
+
+<div th:fragment = "IngredientsList">
+    <a class="btn btn-outline-secondary" href="/skladnik" role="button">Lista składników
+    </a>
+</div>
+<div th:fragment = "AddIngeredient">
+    <a class="btn btn-outline-secondary" href="/skladnik/nowy" role="button">Nowy składnik
+    </a>
+</div>
+
+</html>

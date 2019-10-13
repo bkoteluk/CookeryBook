@@ -7,8 +7,11 @@
     <title>Składniki</title>
 </head>
 <body>
-
-<br/>
+<div class = "row">
+    <div th:replace="fragments::MainPage"></div>
+    <div th:replace="fragments::IngredientsList"></div>
+    <div th:replace="fragments::CategoriesList"></div>
+</div>
 <hr>
 <br/>
 <div class="form-row">

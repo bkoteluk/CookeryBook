@@ -4,23 +4,42 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Strona główna</title>
+    <link rel="stylesheet" href="/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class = "row">
+    <div th:replace="fragments::MainPage"></div>
+    <div th:replace="fragments::AddIngeredient"></div>
+    <div th:replace="fragments::CategoriesList"></div>
+
+</div>
+<br/>
+<hr>
+<br/>
 <h1>Lista składników</h1>
 
 <div>
     <div>
-       <ul th:each="ingredient: ${ingredients}">
-           <li><a th:href="@{'/skladnik/'+${ingredient.id}}" th:text="${ingredient.id}"></a><p th:text="${ingredient.name}"></p></li>
-       </ul>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th>ID składnika</th>
+                <th>Nazwa składnika</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ingredient: ${ingredients}">
+                <td><a th:href="@{'/skladnik/'+${ingredient.id}}" th:text="${ingredient.id}"></a></td>
+                <td th:text="${ingredient.name}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
-<hr><br>
+<hr>
+<br>
 
-<a href="/skladnik/nowy/" >Dodaj składnik >>></a>
-
-<a href="/" > <<< Powrót do strony głównej</a>
 </body>

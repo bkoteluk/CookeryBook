@@ -6,4 +6,5 @@ import pl.bogdank.cookerybook.entity.Formula;
 
 @Repository
 public interface FormulaRepository extends JpaRepository<Formula, Long> {
+
 }

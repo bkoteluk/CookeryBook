@@ -10,7 +10,7 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToMany
+    @ManyToMany(mappedBy = "ingredients")
     private List<Formula> formulas;
 
     public Ingredient() {

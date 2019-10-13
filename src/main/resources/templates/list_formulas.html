@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Strona główna</title>
+    <link rel="stylesheet" href="/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <style>
-        img {
-            width: 90px;
-            height: 90px;
-        }
-    </style>
+
 </head>
 <body>
+<div class = "row">
+    <div th:replace="fragments::NewFormula"></div>
+    <div th:replace="fragments::FormulasLikeOrder"></div>
+    <div th:replace="fragments::CategoriesList"></div>
+    <div th:replace="fragments::IngredientsList"></div>
+</div>
+<br/>
+<hr>
+<br/>
+
 <h1>Lista przepisów</h1>
 
 <div th:each="formula: ${formulas}">
@@ -26,20 +32,17 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"  th:data-target="${'#collapse'+ formula.id}" aria-expanded="false"  th:aria-controls="${'collapse'+formula.id}">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon3"><img th:src="${formula.image}" th:alt="${formula.name}"></span>
+                                    <span class="input-group-text" id="basic-addon3"><img th:src="${formula.image}" th:alt="${formula.name}" width="30" height="30"></span>
                                 </div>
-                                <h4 th:text="${formula.id}+ '.' + '  '+${formula.name}" type="text" class="form-control" id="name" aria-describedby="basic-addon3"></h4>
-                                <p th:text="${'Liczba opinii: '+#lists.size(formula.likes)} "></p>
+                                <div class="input-group-prepend">
+                                    <h4 th:text="${formula.id}+ '.' + '  '+${formula.name}" type="text" class="form-control" id="name" aria-describedby="basic-addon3"></h4>
+                                    <p th:text="${'Liczba opinii: '+#lists.size(formula.likes)} "></p>
+                                </div>
                                 <div class="flex-row-reverse" th:each="category: ${formula.getFormulaCategories()}">
-                                    <img  th:src="${category.icon}" width="40" height="40">
+                                    <img  th:src="${category.icon}" class="icon">
                                 </div>
                             </div>
-
-
-
-
                         </button>
-<!--                        <p th:text="${'Liczba opinii: '+#lists.size(formula.likes)} "></p>-->
                     </p>
                 </div>
 
@@ -58,8 +61,6 @@
     </div>
 
 </div>
-<a href="/przepis/nowy/" >Dodaj przepis >>></a>
-<a href="/skladnik/" >Lista składniów >>></a>
-<a href="/kategoria/" >Lista kategorii >>></a>
+
 </body>
 </html>

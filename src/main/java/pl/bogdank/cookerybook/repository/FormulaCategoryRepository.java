@@ -13,4 +13,5 @@ public interface FormulaCategoryRepository extends JpaRepository<FormulaCategory
 
     @Query("SELECT f.formulaCategories FROM Formula f WHERE f.id = :id")
     List<FormulaCategory> getAllByFormulaId(@Param("id") Long formulaId);
+
 }

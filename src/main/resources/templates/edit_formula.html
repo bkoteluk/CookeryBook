@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Dopisanie nowego przepisu</title>
+    <title>Edycja/usunięcie przepisu</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -14,8 +14,9 @@
 </div>
 <hr>
 <br/>
-
-<form method="post" th:action="@{'/przepis/nowy'}" th:object="${formula}">
+<div class = "row">
+</div>
+<form method="post" th:action="@{'/przepis/' + ${id}+'/edytuj'}" th:object="${formula}">
     <fieldset>
         <label for="formulaname">Nazwa przepisu</label>
         <div class="input-group mb-3">
@@ -31,9 +32,7 @@
                 <input th:field="*{image}" type="file" accept=".png, .jpg, .jpeg" class="custom-file-input" id="formulaimage">
                 <label class="custom-file-label" for="formulaimage" aria-describedby="inputGroupFileAddon02">Wybierz plik</label>
             </div>
-            <div class="input-group-append">
-                <span class="input-group-text" id="inputGroupFileAddon02">Pobierz</span>
-            </div>
+
         </div>
 
         <label for="method">Przepis wykonawia</label>
@@ -62,14 +61,24 @@
             <div class="input-group-prepend">
                 <label class="input-group-text" for="ingredients">Składniki</label>
             </div>
-        <select  name="ingredients" id="ingredients" multiple>
-            <div th:each="ingredient: ${ingredients}">
-                <option th:value="${ingredient.id}" th:text="${ingredient.name}">Składniki</option>
-            </div>
-        </select>
+            <select  name="ingredients" id="ingredients" multiple>
+                <div th:each="ingredient: ${ingredients}">
+                    <option th:value="${ingredient.id}" th:text="${ingredient.name}">Składniki</option>
+                </div>
+            </select>
         </div>
     </fieldset>
     <input type="submit" value="Zapisz">
+</form>
+
+<form method="post" th:action="@{'/przepis/' + ${id}+'/usun'}" th:object="${formula}">
+    <input th:field="*{id}" type="text" hidden>
+    <input th:field="*{image}" type="file" hidden>
+    <input th:field="*{method}" hidden>
+    <input th:field="*{ingredients}" hidden>
+    <input th:field="*{formulaCategories}" hidden>
+    <input th:field="*{likes}" hidden>
+    <input type="submit" value="Usuń">
 </form>
 </body>
 </html>

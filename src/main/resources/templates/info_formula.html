@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Przepis kulinarny</title>
-    <style>
-        img {
-            width: 90px;
-            height: 90px;
-        }
-    </style>
+    <link rel="stylesheet" href="/style.css">
+
 </head>
 <body>
+<div class = "row">
+    <div th:replace="fragments::MainPage"></div>
+    <div th:replace="fragments::NewFormula"></div>
+    <div th:replace="fragments::CategoriesList"></div>
+    <div th:replace="fragments::IngredientsList"></div>
+    <div th:replace="fragments::EditDeleteFormula"></div>
+
+</div>
+<hr>
+<br/>
+
 <h1>Szczegóły przepisu kulinarnego</h1>
 <div class="d-flex p-2 bd-highlight">
-<!--    <img class="img-mini" th:src="${animal.img}" />-->
     <div> <img th:src="${formula.image}"></div>
     <div th:text="${formula.id}"></div>
     <div th:text="${formula.name}"></div>
@@ -23,7 +29,7 @@
     <div th:text="${formula.method}"></div>
 </div>
 <div th:each="category: ${categories}">
-    <span th:text = "${ ' >>' + category.name + '<< '}"></span>
+    <img class="icon" th:src="${category.icon}">
 </div>
 
 <div class="d-flex flex-row bd-highlight mb-5">
@@ -72,10 +78,8 @@
         </table>
 
     </div>
+
 </div>
-
-
-
 
 </body>
 </html>

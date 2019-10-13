@@ -7,15 +7,28 @@
     <title>Kategoria</title>
 </head>
 <body>
-
-<br/>
+<div class = "row">
+    <div th:replace="fragments::MainPage"></div>
+    <div th:replace="fragments::CategoriesList"></div>
+    <div th:replace="fragments::IngredientsList"></div>
+</div>
 <hr>
 <br/>
+
 <div class="form-row">
-    <form method="post" th:action="@{/kategoria/nowa}" th:object="${category}">
+    <form method="post" th:action="@{'/kategoria/nowa'}" th:object="${category}">
         <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input th:field="*{icon}" type="file" accept=".png, .jpg, .jpeg" class="custom-file-input" id="formulaimage">
+                    <label class="custom-file-label" for="formulaimage" aria-describedby="inputGroupFileAddon02">Wybierz plik ikony</label>
+                </div>
+                <div class="input-group-append">
+                    <span class="input-group-text" id="inputGroupFileAddon02">Pobierz</span>
+                </div>
+            </div>
             <label for="name">Nazwa kategorii</label>
-            <input th:field = "*{name}" type = text placeholder="nazwa kategorii .." id="name">
+            <input th:field = "*{name}" type ="text" placeholder="nazwa kategorii .." id="name">
         </div>
         <input type="submit" value = "Zapisz">
     </form>

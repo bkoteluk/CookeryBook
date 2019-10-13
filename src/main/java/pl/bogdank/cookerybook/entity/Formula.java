@@ -14,12 +14,17 @@ public class Formula {
     private String name;
     @Column(length = 1000)
     private String method;
-    @OneToMany(mappedBy = "formula")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "formula")
     private List<Like> likes;
-    @ManyToMany(mappedBy = "formulas")
+    @ManyToMany
+    @JoinTable(name= "formula_ingredient",
+            joinColumns = @JoinColumn(name="formula_id"),
+            inverseJoinColumns= @JoinColumn(name="ingredient_id"))
     private List<Ingredient> ingredients;
-    @ManyToMany(mappedBy = "formulas")
-    @Column(name = "formulacategories")
+    @ManyToMany
+    @JoinTable(name= "formula_category",
+            joinColumns = @JoinColumn(name="formula_id"),
+            inverseJoinColumns= @JoinColumn(name="category_id"))
     private List<FormulaCategory> formulaCategories;
 
     public Formula() {

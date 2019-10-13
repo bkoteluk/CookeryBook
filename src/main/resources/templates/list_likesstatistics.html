@@ -12,31 +12,33 @@
 <body>
 <div class = "row">
     <div th:replace="fragments::MainPage"></div>
-    <div th:replace="fragments::NewCategory"></div>
-    <div th:replace="fragments::IngredientsList"></div>
 </div>
 <hr>
 <br/>
-<h1>Lista kategorii</h1>
+<h1>Lista przepisów wg. ilości polubień/opinii</h1>
 
 <div>
     <div>
+
         <table class="table">
             <thead class="thead-light">
             <tr>
-                <th>ID kategorii</th>
-                <th>Ikona</th>
-                <th>Nazwa kategorii</th>
+                <th>Liczba opinii</th>
+                <th>Nazwa Przepisu</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="category: ${categories}">
-                <td><a th:href="@{'/kategoria/'+${category.id}}" th:text="${category.id}"></a></td>
-                <td><img  th:src="${category.icon}"></td>
-                <td th:text="${category.name}"></td>
+            <tr th:each="statistic: ${statistics}">
+                <td th:text="${statistic.counting}"></td>
+                <td th:text="${statistic.name}"></td>
             </tr>
             </tbody>
         </table>
+<!--        <dl th:each="statistic: ${statistics}">-->
+<!--            <dt th:text="${static.}"></dt>-->
+<!--            <dd th:text="${formula.name}"></dd>-->
+<!--&lt;!&ndash;            <a th:href="@{'/kategoria/'+${category.id}}" th:text="${category.id}"></a><img  th:src="${category.icon}" width="30" height="30"><p th:text="${category.name}">&ndash;&gt;-->
+<!--        </dl>-->
     </div>
 </div>
 

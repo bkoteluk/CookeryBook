@@ -91,21 +91,43 @@ public class FormulaController {
     }
 
     @PostMapping("/przepis/nowy")
-    public String saveFormula(Formula formula, List<FormulaCategory> categories, List<Ingredient> ingredients) {
-//        for (FormulaCategory category : categories) {
-//            formula.getFormulaCategories().add(category);
-//        }
-//        for (Ingredient ingredient : ingredients) {
-//            formula.getIngredients().add(ingredient);
-//        }
+    public String saveFormula(Formula formula) {
         formulaRepository.save(formula);
-        return "reditect:/";
+        return "redirect:/";
     }
 
     @PostMapping("/przepis/{id}/opinia/zapisz")
     public String addLike(Long id, Like like) {
-
         likesRepository.save(like);
         return "redirect:/przepis/{id}";
+    }
+
+    @GetMapping("/przepis/{id}/edytuj")
+    public String editFormula(@PathVariable("id") Long id, Model model) {
+        List<Ingredient> ingredients = ingredientsRepository.findAll();
+        List<FormulaCategory> formulaCategories = formulaCategoryRepository.findAll();
+        Optional<Formula> optionalFormula = formulaRepository.findById(id);
+        if(optionalFormula.isPresent()) {
+            Formula formula = optionalFormula.get();
+            model.addAttribute("ingredients", ingredients);
+            model.addAttribute("categories", formulaCategories);
+            model.addAttribute("formula",formula);
+            model.addAttribute("id", id);
+            return "edit_formula";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/przepis/{id}/edytuj")
+    public String saveEditedFormula(Long id, Formula formula) {
+        formulaRepository.save(formula);
+        return "redirect:/";
+    }
+
+    @PostMapping("/przepis/{id}/usun/")
+    public String deleteFormula(Long id, Formula formula) {
+        formulaRepository.delete(formula);
+        return "redirect:/";
     }
 }

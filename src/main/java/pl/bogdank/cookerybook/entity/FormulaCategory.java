@@ -11,7 +11,7 @@ public class FormulaCategory {
     private Long id;
     private String name;
     private String icon;
-    @ManyToMany
+    @ManyToMany(mappedBy = "formulaCategories")
     List<Formula> formulas;
 
     public FormulaCategory() {

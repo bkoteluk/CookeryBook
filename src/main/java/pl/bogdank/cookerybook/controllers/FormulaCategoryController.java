@@ -5,8 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.bogdank.cookerybook.entity.Formula;
 import pl.bogdank.cookerybook.entity.FormulaCategory;
 import pl.bogdank.cookerybook.repository.FormulaCategoryRepository;
+import pl.bogdank.cookerybook.repository.FormulaRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,10 +16,12 @@ import java.util.Optional;
 @Controller
 public class FormulaCategoryController {
 
+    FormulaRepository formulaRepository;
     FormulaCategoryRepository formulaCategoryRepository;
 
-    public FormulaCategoryController(FormulaCategoryRepository formulaCategoryRepository) {
+    public FormulaCategoryController(FormulaCategoryRepository formulaCategoryRepository, FormulaRepository formulaRepository) {
         this.formulaCategoryRepository = formulaCategoryRepository;
+        this.formulaRepository = formulaRepository;
     }
 
     @GetMapping("/kategoria")
@@ -67,6 +71,15 @@ public class FormulaCategoryController {
     @PostMapping("/kategoria/nowa")
     public String addCategory(FormulaCategory formulaCategory) {
         formulaCategoryRepository.save(formulaCategory);
-        return "redirect:/kategoria/";
+        return "redirect:/";
+    }
+
+    @GetMapping("/kategoria/lista1/")
+    public String listFormulasOrderByCategory(Model model) {
+        List<Formula> formulas = formulaRepository.findAll();
+        List<FormulaCategory> formulaCategories = formulaCategoryRepository.findAll();
+        model.addAttribute("categories", formulaCategories);
+        model.addAttribute("formulas", formulas);
+        return "list_formulas_categoryorder";
     }
 }

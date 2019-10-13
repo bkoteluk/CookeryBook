@@ -1,7 +1,11 @@
-body, html {
+html {
     height: 100%;
-}
 
+}
+body {
+    margin-right: 100px;
+    margin-left: 100px;
+}
 .bg {
     /* The image used */
     background-image: url("https://www.w3schools.com/howto/img_parallax.jpg");
@@ -13,4 +17,12 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+ img {
+     width: 90px;
+     height: 90px;
+ }
+.icon {
+    width: 30px;
+    height: 30px;
 }
